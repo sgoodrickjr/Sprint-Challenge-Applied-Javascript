@@ -17,3 +17,12 @@
     <div class="right-button"> > </div>
   </div>
 */
+
+
+function CarouselComponent() {
+
+  const carousel = document.createElement("div");
+  const leftButton = document.createElement("div");
+  const assets = document.createElement("img")
+
+}

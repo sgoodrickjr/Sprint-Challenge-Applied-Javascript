@@ -19,12 +19,49 @@
 //
 // Use your function to create a card for each of the articles and add the card to the DOM.
 
-const card = document.createElement("div")
+
+function ArticleCards(imgUrl, authorName) {
+
+const card = document.createElement("div");
+card.classList.add("card");
+
+const headline = document.createElement("div");
+headline.classList.add("headline");
+headline.textContent = `${articleHeadline}`;
+
+const author = document.createElement("div");
+author.classList.add("author");
+
+const imgContainer = document.createElement("div");
+imgContainer.classList.add("img-container");
+
+const source = document.createElement("img");
+img.src = imgUrl;
+
+const attribution = document.createElement("span");
+attribution.textContent = `By ${authorName}`;
 
 
-axios.get("https://lambda-times-backend.herokuapp.com/articles");
+card.appendChild(headline)
+card.appendChild(author)
+author.appendChild(imgContainer)
+author.appendChild(authorName)
+source.appendChild(imgUrl)
+
+
+return card
+
+}
+
+
+const entryPoint = document.querySelector(".card-container")
+
+axios.get("https://lambda-times-backend.herokuapp.com/articles")
     .then((response) => {
-        console.log(response);
+        response.data.message.forEach((imageUrl) => {
+            const newArticleCard = ArticleCards(imageUrl, "Ernest Hemingway");
+            console.log(newArticleCard);
+        })
     })
     .catch((err) => {
         console.log("the data was not returned", err)

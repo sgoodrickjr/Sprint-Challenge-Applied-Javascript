@@ -8,13 +8,26 @@
 //  Each tab should look like this:
 //    <div class="tab">topic here</div>
 
+function TabsComponent(item) {
+
 const topic = document.createElement('div')
 topic.classList.add("tab")
-topic.textContent = "topic here";
+topic.textContent = item;
 
-axios.get("https://lambda-times-backend.herokuapp.com/topics");
+return topic
+
+}
+
+axios.get("https://lambda-times-backend.herokuapp.com/topics")
     .then((response) => {
-        console.log(response);
+        topicNamesArray = response.data.topics;
+        topicNamesArray.map(titles => {
+            
+    const newTab = TabsComponent(titles);
+    const topics = document.querySelector(".topics")
+
+    topics.appendChild(newTab);
+        })
     })
     .catch((err) => {
         console.log("the data was not returned", err)

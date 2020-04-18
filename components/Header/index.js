@@ -31,9 +31,11 @@ function Header() {
     header.appendChild(title);
     header.appendChild(temp);
 
+
     return header
 
 }
 
 const headerContainer = document.querySelector('.header-container');
 const headerPanel = Header();
+    headerContainer.appendChild(headerPanel);
