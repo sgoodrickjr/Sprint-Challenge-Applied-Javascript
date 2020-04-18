@@ -7,3 +7,16 @@
 //
 //  Each tab should look like this:
 //    <div class="tab">topic here</div>
+
+const topic = document.createElement('div')
+topic.classList.add("tab")
+topic.textContent = "topic here";
+
+axios.get("https://lambda-times-backend.herokuapp.com/topics");
+    .then((response) => {
+        console.log(response);
+    })
+    .catch((err) => {
+        console.log("the data was not returned", err)
+    });
+    console.log("After .get")
