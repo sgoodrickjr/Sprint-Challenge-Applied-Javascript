@@ -20,14 +20,14 @@
 // Use your function to create a card for each of the articles and add the card to the DOM.
 
 
-function ArticleCards(imgUrl, authorName) {
+function ArticleCards(object) {
 
 const card = document.createElement("div");
 card.classList.add("card");
 
 const headline = document.createElement("div");
 headline.classList.add("headline");
-headline.textContent = `${articleHeadline}`;
+headline.textContent = `${object.headline}`;
 
 const author = document.createElement("div");
 author.classList.add("author");
@@ -36,17 +36,17 @@ const imgContainer = document.createElement("div");
 imgContainer.classList.add("img-container");
 
 const source = document.createElement("img");
-img.src = imgUrl;
+source.src = `${object.authorPhoto}`;
 
-const attribution = document.createElement("span");
-attribution.textContent = `By ${authorName}`;
+const authorName = document.createElement("span");
+authorName.textContent = `By ${object.authorName}`;
 
 
 card.appendChild(headline)
 card.appendChild(author)
 author.appendChild(imgContainer)
 author.appendChild(authorName)
-source.appendChild(imgUrl)
+imgContainer.appendChild(source)
 
 
 return card
@@ -54,14 +54,22 @@ return card
 }
 
 
-const entryPoint = document.querySelector(".card-container")
+const entryPoint = document.querySelector(".cards-container")
 
 axios.get("https://lambda-times-backend.herokuapp.com/articles")
     .then((response) => {
-        response.data.message.forEach((imageUrl) => {
-            const newArticleCard = ArticleCards(imageUrl, "Ernest Hemingway");
-            console.log(newArticleCard);
+        let authorNamesArray = response.data.articles;
+        console.log("authorArray", authorNamesArray)
+//where is the array of data so I know what to call?
+
+
+
+        for (topic in authorNamesArray) {
+            authorNamesArray[topic].forEach(item =>
+            {
+            entryPoint.appendChild(ArticleCards(item));                  
         })
+    }
     })
     .catch((err) => {
         console.log("the data was not returned", err)

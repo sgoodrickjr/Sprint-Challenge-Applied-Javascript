@@ -19,10 +19,28 @@
 */
 
 
-function CarouselComponent() {
+function CarouselComponent(imgUrl) {
 
   const carousel = document.createElement("div");
   const leftButton = document.createElement("div");
-  const assets = document.createElement("img")
+  const assets = document.createElement("img");
+  const rightButton = document.createElement("div");
+
+  carousel.classList.add("carousel");
+  leftButton.classList.add("left-button");
+  img.src = imgUrl;
+
+  carousel.appendChild(leftButton);
+  carousel.appendChild(assets);
+  carousel.appendChild(rightButton);
+  assets.appendChild(imgUrl);
+
+  leftButton.addEventListener('click', (event) => {
+    leftButton.style.color = "purple";
+  })
+
+  rightButton.addEventListener('click', (event) => {
+    rightButton.style.color = "purple";
+  })
 
 }
